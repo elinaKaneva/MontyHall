@@ -84,7 +84,44 @@ class Starter(PygameHelper):
             else:
                 self.doors.append(Door(0, door))
 
-
+    def run_multiple (self, times, type):
+        for x in range(times):
+            cart_place = int(uniform(0, 3))
+            chose = int(uniform(0, 3))
+            izbrana = 5
+            for i in range(3):
+                if not i==chose and not i==izbrana and not i==cart_place:
+                    izbrana = i
+            if not type:
+                for j in range(3):
+                    if not j==chose and not j==izbrana:
+                        chose = j
+            if chose == cart_place:
+                self.score["win"] += 1
+            else:
+                self.score["loose"] += 1
+        print(self.score)
+        self.score["win"] = 0
+        self.score["loose"] = 0
+               
+    def run_multiple_tests (self, times, type):
+        for p in range(times):
+            cart_place = int(uniform(0, 3))
+            chose = int(uniform(0, 3))
+            if type:
+                if cart_place == chose:
+                    self.score["win"] += 1
+                else:
+                    self.score["loose"] += 1
+            else:
+                if cart_place == chose:
+                    self.score["loose"] += 1
+                else:
+                    self.score["win"] += 1
+        print(self.score)        
+        self.score["win"] = 0
+        self.score["loose"] = 0        
+               
     def __init__(self):
         self.w, self.h = 1144, 600
 
@@ -111,6 +148,14 @@ class Starter(PygameHelper):
         self.speach_bubble_4_loose = pygame.image.load(os.path.join("pics", "speach_bubble_4_loose.png"))
 
         self.reset()
+        
+        #self.run_multiple(1000, 0)
+        self.run_multiple_tests(10, 0)
+        self.run_multiple_tests(10, 1)
+        self.run_multiple_tests(100, 0)
+        self.run_multiple_tests(100, 1)
+        self.run_multiple_tests(1000, 0)
+        self.run_multiple_tests(1000, 1)
         
         white = (255,255,255)
         PygameHelper.__init__(self, size=(self.w, self.h), fill=(white))
