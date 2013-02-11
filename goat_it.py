@@ -149,11 +149,7 @@ class Starter(PygameHelper):
 
         self.reset()
         
-        #self.run_multiple(1000, 0)
-        self.run_multiple_tests(10, 0)
-        self.run_multiple_tests(10, 1)
-        self.run_multiple_tests(100, 0)
-        self.run_multiple_tests(100, 1)
+
         self.run_multiple_tests(1000, 0)
         self.run_multiple_tests(1000, 1)
         
@@ -211,16 +207,39 @@ class Starter(PygameHelper):
                         new_door.is_selected = 1
                         self.game_state = 4
                         break
+            elif self.game_state == 6:
+                self.run_multiple_tests(10, 0)
+                self.game_state = 0
         elif position[0] in range(40, 310) and position[1] in range(178, 238):
-            if self.game_state == 1:    
+            if self.game_state == 0:
+                self.game_state = 6
+            elif self.game_state == 1:    
                 self.doors[1].is_selected = 1
                 self.game_state = 2
             elif self.game_state == 3:
                 self.game_state = 4
+            elif self.game_state == 6:
+                self.run_multiple_tests(10, 1)
+                self.game_state = 0
         elif position[0] in range(40, 310) and position[1] in range(241, 301):
             if self.game_state == 1:
                 self.doors[2].is_selected = 1
                 self.game_state = 2
+            elif self.game_state == 6:
+                self.run_multiple_tests(100, 0)
+                self.game_state = 0
+        elif position[0] in range(40, 310) and position[1] in range(304, 364):
+            if self.game_state == 6:
+                self.run_multiple_tests(100, 1) 
+                self.game_state = 0
+        elif position[0] in range(40, 310) and position[1] in range(367, 427):
+            if self.game_state == 6:
+                self.run_multiple_tests(1000, 0)
+                self.game_state = 0
+        elif position[0] in range(40, 310) and position[1] in range(430, 490):
+            if self.game_state == 6:
+                self.run_multiple_tests(1000, 1)
+                self.game_state = 0
     
     def mouseMotion(self, buttons, position, rel):
         pass
@@ -240,7 +259,6 @@ class Starter(PygameHelper):
         if self.game_state == 0:
             self.screen.blit(self.state_0_new, (40, 115))
             self.screen.blit(self.state_0_save, (40, 178))
-            self.screen.blit(self.state_0_change, (40, 241)) 
         elif self.game_state == 1:
             self.screen.blit(self.state_1_1, (40, 115))
             self.screen.blit(self.state_1_2, (40, 178))
@@ -248,6 +266,13 @@ class Starter(PygameHelper):
         elif self.game_state == 3:
             self.screen.blit(self.state_3_change, (40, 115))
             self.screen.blit(self.state_3_save, (40, 178))
+        elif self.game_state == 6:
+            self.screen.blit(self.state_0_save, (40, 115))
+            self.screen.blit(self.state_0_change, (40, 178))
+            self.screen.blit(self.state_0_save, (40, 241))
+            self.screen.blit(self.state_0_change, (40, 304))
+            self.screen.blit(self.state_0_save, (40, 367))
+            self.screen.blit(self.state_0_change, (40, 430))
 
         self.screen.blit(self.presenter, (980, 215))
         
