@@ -132,6 +132,11 @@ class Starter(PygameHelper):
         self.presenter = pygame.image.load(os.path.join("pics", "presenter.png"))
         self.speach_bubble = pygame.image.load(os.path.join("pics", "speach_bubble.png"))
 
+        self.state_100_change = pygame.image.load(os.path.join("pics", "text", "state_0_change_100.png"))
+        self.state_100_save = pygame.image.load(os.path.join("pics", "text", "state_0_save_100.png"))
+        self.state_10_change = pygame.image.load(os.path.join("pics", "text", "state_0_change_10.png"))
+        self.state_0_multiple = pygame.image.load(os.path.join("pics", "text", "state_0_choice.png"))
+        self.state_10_save = pygame.image.load(os.path.join("pics", "text", "state_0_save_10.png"))
         self.state_0_change = pygame.image.load(os.path.join("pics", "text", "state_0_change.png"))
         self.state_0_new = pygame.image.load(os.path.join("pics", "text", "state_0_new.png"))
         self.state_0_save = pygame.image.load(os.path.join("pics", "text", "state_0_save.png"))
@@ -258,7 +263,7 @@ class Starter(PygameHelper):
 
         if self.game_state == 0:
             self.screen.blit(self.state_0_new, (40, 115))
-            self.screen.blit(self.state_0_save, (40, 178))
+            self.screen.blit(self.state_0_multiple, (40, 178))
         elif self.game_state == 1:
             self.screen.blit(self.state_1_1, (40, 115))
             self.screen.blit(self.state_1_2, (40, 178))
@@ -267,10 +272,10 @@ class Starter(PygameHelper):
             self.screen.blit(self.state_3_change, (40, 115))
             self.screen.blit(self.state_3_save, (40, 178))
         elif self.game_state == 6:
-            self.screen.blit(self.state_0_save, (40, 115))
-            self.screen.blit(self.state_0_change, (40, 178))
-            self.screen.blit(self.state_0_save, (40, 241))
-            self.screen.blit(self.state_0_change, (40, 304))
+            self.screen.blit(self.state_10_save, (40, 115))
+            self.screen.blit(self.state_10_change, (40, 178))
+            self.screen.blit(self.state_100_save, (40, 241))
+            self.screen.blit(self.state_100_change, (40, 304))
             self.screen.blit(self.state_0_save, (40, 367))
             self.screen.blit(self.state_0_change, (40, 430))
 
@@ -291,4 +296,3 @@ class Starter(PygameHelper):
         
 s = Starter()
 s.mainLoop(60)
-
